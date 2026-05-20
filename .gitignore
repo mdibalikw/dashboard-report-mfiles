@@ -44,3 +44,7 @@ frontend/.env.production.local
 *.njsproj
 *.sln
 *.sw?
+
+# Abaikan file koleksi Postman
+ref Mfiles.postman_collection.json
+*.postman_collection.json
