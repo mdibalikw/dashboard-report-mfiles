@@ -45,6 +45,5 @@ frontend/.env.production.local
 *.sln
 *.sw?
 
-# Abaikan file koleksi Postman
+# Abaikan file referensi Postman/API
 Ref_API_Mfiles.json
-*.postman_collection.json
