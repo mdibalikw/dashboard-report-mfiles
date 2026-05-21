@@ -204,6 +204,13 @@ const MOCK_DATA = {
     { label: 'Non-Disclosure Agreements', value: 9 },
     { label: 'Customer Proposals', value: 18 }
   ],
+  'top-classes': [
+    { label: 'Purchase Invoices', value: 34 },
+    { label: 'Project Plans', value: 22 },
+    { label: 'Customer Proposals', value: 18 },
+    { label: 'Employment Contracts', value: 15 },
+    { label: 'Non-Disclosure Agreements', value: 9 }
+  ],
   'workflow-status': [
     { label: 'New / Draft', value: 12 },
     { label: 'Under Review', value: 28 },
@@ -569,10 +576,15 @@ app.get('/api/dashboard/reports/:id', async (req, res) => {
     }
     
     // Convert counts map to flat array format { label, value }
-    const result = Object.keys(counts).map(key => ({
+    let result = Object.keys(counts).map(key => ({
       label: key,
       value: counts[key]
     }));
+    
+    // Sort descending for top-classes leaderboard
+    if (id === 'top-classes') {
+      result.sort((a, b) => b.value - a.value);
+    }
     
     res.json(result);
   } catch (error) {

@@ -397,6 +397,15 @@ const loadSettings = async () => {
     const response = await axios.get('/api/vault/settings');
     if (response.data && response.data.settings) {
       form.value = { ...response.data.settings };
+      
+      // Emit the initial state to the parent immediately on mount
+      emit('status-changed', {
+        connected: form.value.mockMode ? null : null, // Will be verified shortly if live
+        isMock: form.value.mockMode,
+        url: form.value.url,
+        username: form.value.username
+      });
+
       if (form.value.mockMode) {
         connectionHealthy.value = null;
       } else if (form.value.url && form.value.username) {
@@ -433,10 +442,20 @@ const runSilentCheck = async () => {
     const testPayload = { ...form.value };
     await axios.post('/api/vault/test', testPayload);
     connectionHealthy.value = true;
-    emit('status-changed', { connected: true, isMock: false });
+    emit('status-changed', { 
+      connected: true, 
+      isMock: false,
+      url: form.value.url,
+      username: form.value.username
+    });
   } catch (error) {
     connectionHealthy.value = false;
-    emit('status-changed', { connected: false, isMock: false });
+    emit('status-changed', { 
+      connected: false, 
+      isMock: false,
+      url: form.value.url,
+      username: form.value.username
+    });
   }
 };
 
@@ -484,6 +503,8 @@ const handleSave = async () => {
       // 2. Map form values back to our report objects and save reports config
       const updatedReports = rawReportsConfig.map(r => {
         if (r.id === 'docs-by-class') {
+          return { ...r, sourceViewId: reportsForm.value.docsByClass };
+        } else if (r.id === 'top-classes') {
           return { ...r, sourceViewId: reportsForm.value.docsByClass };
         } else if (r.id === 'workflow-status') {
           return { ...r, sourceViewId: reportsForm.value.workflowStatus };
