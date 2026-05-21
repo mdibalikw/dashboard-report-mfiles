@@ -95,3 +95,4 @@ Laporan dikonfigurasi di dalam berkas [config/reports.json](config/reports.json)
 * `type`: Gaya grafik visual (`bar`, `pie`, `doughnut`).
 * `sourceViewId`: ID View M-Files yang berisi folder/file yang ingin diagregasi. Jika dikosongkan untuk `docs-by-views`, maka pelaporan akan merujuk ke semua view tingkat root.
 * `groupBy`: Kunci dasar pengelompokan data (`class`, `state`, `type`, atau `views`).
+* Hanya untuk Vault Mfiles

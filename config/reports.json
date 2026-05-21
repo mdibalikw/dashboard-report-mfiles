@@ -3,28 +3,28 @@
     "id": "docs-by-class",
     "title": "Documents by Class",
     "type": "doughnut",
-    "sourceViewId": "121",
+    "sourceViewId": "315/281",
     "groupBy": "class"
   },
   {
     "id": "top-classes",
     "title": "Class Leaderboard",
     "type": "bar",
-    "sourceViewId": "121",
+    "sourceViewId": "315/281",
     "groupBy": "class"
   },
   {
     "id": "workflow-status",
     "title": "Workflow Status",
     "type": "bar",
-    "sourceViewId": "118",
+    "sourceViewId": "319/258",
     "groupBy": "state"
   },
   {
     "id": "objects-by-type",
     "title": "Objects by Type",
     "type": "pie",
-    "sourceViewId": "119",
+    "sourceViewId": "315/281",
     "groupBy": "type"
   },
   {
